@@ -18,18 +18,24 @@
 		http://code.alibabatech.com/schema/dubbo        
 		http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-	<!--dubbo服务提供方-->
-	<!--唯一标识-->
-	<dubbo:application name="babasport-console"/>
-	<!--注册中心地址-->
-	<dubbo:registry address="N/A" check="false"/> 
+	<!--dubbo服务提供方 -->
+	<!--唯一标识 -->
+	<dubbo:application name="babasport-console" />
+	<!--注册中心地址 -->
+	<dubbo:registry address="N/A" check="false" />
 	<!-- <dubbo:registry address="127.0.0.1:2181" protocol="zookeeper"/> -->
-	<!--引用服务-->
-	<dubbo:reference interface="cn.itcast.core.service.TestTbService" id="testTbService"
-	url="dubbo://127.0.0.1:20880"/>
-	<dubbo:reference interface="cn.itcast.core.service.product.BrandService" id="brandService"
-	url="dubbo://127.0.0.1:20880"/>
-	
-	<dubbo:consumer timeout="600000" check="false"/>
+	<!--引用服务 -->
+	<dubbo:reference interface="cn.itcast.core.service.TestTbService"
+		id="testTbService" url="dubbo://127.0.0.1:20880" />
+	<dubbo:reference interface="cn.itcast.core.service.product.BrandService"
+		id="brandService" url="dubbo://127.0.0.1:20880" />
+	<dubbo:reference interface="cn.itcast.core.service.upload.UploadService"
+		id="uploadService" url="dubbo://127.0.0.1:20880" />
+	<dubbo:reference interface="cn.itcast.core.service.product.ProductService"
+		id="productService" url="dubbo://127.0.0.1:20880" />
+	<dubbo:reference interface="cn.itcast.core.service.product.SkuService"
+		id="skuService" url="dubbo://127.0.0.1:20880" />
+
+	<dubbo:consumer timeout="600000" check="false" />
 
 </beans>

@@ -21,16 +21,27 @@
 	<!-- Dubbo提供方 -->
 	<!-- 1：名称 计算机 区别 唯一 -->
 	<dubbo:application name="babasport-service-product" />
-	
+
 	<!-- 2：设置注册中心 地址 zookeeper在哪里 redis ... -->
 	<!-- <dubbo:registry address="127.0.0.1:2181" protocol="zookeeper"/> -->
-	<dubbo:registry address="N/A"/>
-	
+	<dubbo:registry address="N/A" />
+
 	<!-- 3：dubbo://192.168.39.80:20880 默认 设置提供服务的端口号 -->
-	<dubbo:protocol port="20880" name="dubbo"/>
-	
+	<dubbo:protocol port="20880" name="dubbo" />
+
 	<!-- 4： 暴露实现类 -->
-	<dubbo:service interface="cn.itcast.core.service.TestTbService" ref="testTbService" />
-	<dubbo:service interface="cn.itcast.core.service.product.BrandService" ref="brandService" />	
+	<!-- <dubbo:service interface="cn.itcast.core.service.TestTbService" ref="testTbService" 
+		/> -->
+	<dubbo:service interface="cn.itcast.core.service.product.BrandService"
+		ref="brandService" />
+		
+	<dubbo:service interface="cn.itcast.core.service.upload.UploadService"
+		ref="uploadService" />
+		
+	<dubbo:service interface="cn.itcast.core.service.product.ProductService"
+		ref="productService" />
+		
+	<dubbo:service interface="cn.itcast.core.service.product.SkuService"
+		ref="skuService" />
 
 </beans>

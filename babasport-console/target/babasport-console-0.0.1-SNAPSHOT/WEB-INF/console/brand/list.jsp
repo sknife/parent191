@@ -5,6 +5,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <title>babasport-list</title>
+<script type="text/javascript">
+	function checkBox(name,checked) {
+		$("input[name="+name+"]").attr("checked",checked);
+	}
+	
+	function optDelete(name,isDisplay,pageNo){
+		//请至少选择
+		var len = $("input[name=ids]:checked").length;
+		
+		if(len == 0) {
+			alert("至少选择一个");
+			return;
+		}
+		
+		if(!confirm("确定要删除吗？")){
+			return;
+		}
+		
+		
+		$("#jvForm").attr("action","/brand/deletes.do?name="+name+"&isDisplay="+isDisplay+"&pageNo="+pageNo);
+		$("#jvForm").attr("method","post").submit();
+	}
+</script>
 </head>
 <body>
 <div class="box-positon">
@@ -23,6 +46,7 @@
 	</select>
 	<input type="submit" class="query" value="查询"/>
 </form>
+<form id="jvForm">
 <table cellspacing="1" cellpadding="0" border="0" width="100%" class="pn-ltable">
 	<thead class="pn-lthead">
 		<tr>
@@ -40,12 +64,12 @@
 	
 	<c:forEach items="${pagination.list }" var="brand">
 		<tr bgcolor="#ffffff" onmouseout="this.bgColor='#ffffff'" onmouseover="this.bgColor='#eeeeee'">
-			<td><input type="checkbox" value="7" name="ids"/></td>
+			<td><input type="checkbox" value="${brand.id }" name="ids"/></td>
 			<td align="center">${brand.id }</td>
 			<td align="center">${brand.name }</td>
-			<td align="center"><img width="40" height="40" src="/images/pic/ppp1.jpg"/></td>
-			<td align="center"></td>
-			<td align="center">99</td>
+			<td align="center"><img width="40" height="40" src="${brand.imgUrl }"/></td>
+			<td align="center">${brand.description }</td>
+			<td align="center">${brand.sort }</td>
 			<td align="center">
 			<c:if test="${isDisplay==1 }">是</c:if>
 			<c:if test="${isDisplay==0 }">否</c:if>
@@ -59,6 +83,7 @@
 	
 	</tbody>
 </table>
+</form>
 <div class="page pb15">
 	<span class="r inb_a page_b">
 	<c:forEach items="${pagination.pageView }" var="page">
@@ -66,7 +91,8 @@
 	</c:forEach>
 	</span>
 </div>
-<div style="margin-top:15px;"><input class="del-button" type="button" value="删除" onclick="optDelete();"/></div>
+<div style="margin-top:15px;"><input class="del-button" type="button" value="删除" onclick="optDelete('${name}','${isDisplay }','${pagination.pageNo }');"/></div>
+
 </div>
 </body>
 </html>

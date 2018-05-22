@@ -1,0 +1,58 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/task
+   		http://www.springframework.org/schema/task/spring-task-4.0.xsd
+		http://code.alibabatech.com/schema/dubbo        
+		http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+		
+		
+		<!--ActiveMQ 配置 -->
+		<!--工厂 原厂商提供 -->
+		<bean id="activeMQConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+			<!--设置连接 -->
+			<property name="brokerURL" value="tcp://192.168.1.67:61616"></property>
+			<!--用户名 -->
+			<property name="userName" value="admin"></property>
+			<!--密码 -->
+			<property name="password" value="admin"></property>
+		</bean>
+		
+		<!--工厂连接池 -->
+		<bean id="pooledConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory">
+			<property name="connectionFactory" ref="activeMQConnectionFactory"></property>
+			<!-- 最大连接数-->
+			<property name="maxConnections" value="2"></property>
+		</bean>
+		
+		<!-- spong管理上面工厂-->
+		<bean id="connectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
+			<!--注入上面工厂 -->
+			<property name="targetConnectionFactory" ref="pooledConnectionFactory"></property>
+		</bean>
+		
+		<!--JmsTemplate -->
+		<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+			<property name="connectionFactory" ref="connectionFactory"></property>
+			<!--默认目标 -->
+			<property name="defaultDestinationName" value="productId"></property>
+			<!-- 默认点对点模式 false / true 订阅模式 publish sub-->
+			<property name="pubSubDomain" value="true"></property>
+		</bean>
+		
+		
+</beans>

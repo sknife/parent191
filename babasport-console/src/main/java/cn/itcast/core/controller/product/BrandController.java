@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping(value = "/brand")
@@ -45,4 +46,34 @@ public class BrandController {
 
 		return "brand/edit";
 	}
+	
+	@RequestMapping(value="/edit.do")
+	public String edit(Brand brand) {
+		brandService.updateBrandById(brand);
+		return "redirect:/brand/list.do";
+		
+	}
+	
+	@RequestMapping(value="/deletes.do")
+	public String deletes(Long[] ids,Integer pageNo,String name,Integer isDisplay,Model model){
+		//删除
+		brandService.deleteBrandByIds(ids);
+		//判断
+		if(null != pageNo){
+			model.addAttribute("pageNo", pageNo);
+		}
+		//判断
+		if(null != name){
+			model.addAttribute("name", name);
+		}
+		//判断
+		if(null != isDisplay){
+			model.addAttribute("isDisplay", isDisplay);
+		}
+		return "redirect:/brand/list.do";
+	}
+
+
+	
+	
 }

@@ -1,3 +1,10 @@
-cn\itcast\core\service\product\BrandService.class
+cn\itcast\core\service\CeshiService.class
+cn\itcast\core\service\product\ProductService.class
 cn\itcast\core\service\TestTbService.class
+cn\itcast\core\service\CmsService.class
+cn\itcast\core\service\user\BuyerService.class
+cn\itcast\core\service\product\BrandService.class
 cn\itcast\core\service\upload\UploadService.class
+cn\itcast\core\service\product\SkuService.class
+cn\itcast\core\service\user\SessionProvider.class
+cn\itcast\core\service\SearchService.class

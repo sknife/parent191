@@ -1,3 +1,5 @@
 cn\itcast\core\controller\CenterController.class
+cn\itcast\core\controller\product\UploadController.class
 cn\itcast\core\controller\product\BrandController.class
-cn\itcast\core\controller\product\upload\UploadController.class
+cn\itcast\core\controller\product\ProductController.class
+cn\itcast\core\controller\product\SkuController.class

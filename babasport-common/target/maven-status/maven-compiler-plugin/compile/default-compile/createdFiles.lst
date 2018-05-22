@@ -1,2 +1,3 @@
-cn\itcast\core\common\web\Constants.class
+cn\itcast\common\utils\RequestUtils.class
+cn\itcast\common\web\Constants.class
 cn\itcast\common\fdfs\FastDFSUtils.class

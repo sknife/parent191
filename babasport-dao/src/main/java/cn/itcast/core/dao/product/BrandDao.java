@@ -12,4 +12,7 @@ public interface BrandDao {
     List<Brand> selectBrandListByQuery(BrandQuery brandQuery);
     Integer selectCount(BrandQuery brandQuery);
     Brand selectBrandById(Long id);
+    void updateBrandById(Brand brand);
+	void doDelete(Long id);
+	void deleteBrandByIds(Long[] ids);
 }
